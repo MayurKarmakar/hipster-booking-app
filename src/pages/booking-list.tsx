@@ -40,6 +40,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   Calendar,
   Clock,
@@ -52,6 +53,7 @@ import {
   Search,
   Ticket,
   X,
+  AlertCircle,
 } from "lucide-react";
 import { useState } from "react";
 import { useAppStore, type Booking } from "storeApp/store";
@@ -95,6 +97,7 @@ function determineBookingStatus(booking: Booking): BookingStatus {
 export default function BookingList() {
   const removeBooking = useAppStore((state: any) => state.removeBooking);
   const bookings = useAppStore((state: any) => state.bookings) as Booking[];
+  const user = useAppStore((state: any) => state.user);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
@@ -170,6 +173,29 @@ export default function BookingList() {
   }
 
   const stats = getBookingStats();
+
+  if (!user) {
+    return (
+      <div className={cn("flex-1 w-full mx-auto py-8 px-4 gap-3")}>
+        <div className={cn("mb-8")}>
+          <h1 className={cn("text-4xl font-bold mb-2 flex items-center gap-2")}>
+            <Ticket className={cn("w-10 h-10")} />
+            Booking History
+          </h1>
+          <p className={cn("text-muted-foreground")}>
+            View and manage all your movie bookings
+          </p>
+        </div>
+        <Alert variant="destructive" className={cn("max-w-2xl mx-auto")}>
+          <AlertCircle className={cn("h-4 w-4")} />
+          <AlertTitle>Authentication Required</AlertTitle>
+          <AlertDescription>
+            You need to be logged in to view your booking history. Please log in to access your bookings.
+          </AlertDescription>
+        </Alert>
+      </div>
+    );
+  }
 
   return (
     <div className={cn("flex-1 w-full mx-auto py-8 px-4 gap-3")}>

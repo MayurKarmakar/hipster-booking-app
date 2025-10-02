@@ -15,9 +15,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowLeft, Calendar, Clock, Film, MapPin } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Film, MapPin, AlertCircle } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAppStore } from "storeApp/store";
@@ -155,6 +156,29 @@ export default function BookingForm() {
 
     alert(`Booking confirmed! Total: $${totalCost.toFixed(2)}`);
     resetForm();
+  }
+
+  if (!user) {
+    return (
+      <div className={cn("w-full mx-auto py-4 sm:py-6 md:py-8 px-3 sm:px-4")}>
+        <div className={cn("mb-6 sm:mb-8 text-center")}>
+          <h1 className={cn("text-2xl sm:text-3xl md:text-4xl font-bold mb-2 flex items-center justify-center gap-2")}>
+            <Film className={cn("w-8 h-8 sm:w-10 sm:h-10")} />
+            Movie Ticket Booking
+          </h1>
+          <p className={cn("text-sm sm:text-base text-muted-foreground")}>
+            Select your movie, seats, and complete your booking
+          </p>
+        </div>
+        <Alert variant="destructive" className={cn("max-w-2xl mx-auto")}>
+          <AlertCircle className={cn("h-4 w-4")} />
+          <AlertTitle>Authentication Required</AlertTitle>
+          <AlertDescription>
+            You need to be logged in to book movie tickets. Please log in to continue.
+          </AlertDescription>
+        </Alert>
+      </div>
+    );
   }
 
   return (
