@@ -178,11 +178,11 @@ export default function BookingList() {
     return (
       <div className={cn("flex-1 w-full mx-auto py-8 px-4 gap-3")}>
         <div className={cn("mb-8")}>
-          <h1 className={cn("text-4xl font-bold mb-2 flex items-center gap-2")}>
+          <h1 className={cn("text-4xl font-bold mb-2 flex items-center justify-center gap-2")}>
             <Ticket className={cn("w-10 h-10")} />
             Booking History
           </h1>
-          <p className={cn("text-muted-foreground")}>
+          <p className={cn("text-muted-foreground text-center")}>
             View and manage all your movie bookings
           </p>
         </div>
@@ -200,11 +200,11 @@ export default function BookingList() {
   return (
     <div className={cn("flex-1 w-full mx-auto py-8 px-4 gap-3")}>
       <div className={cn("mb-8")}>
-        <h1 className={cn("text-4xl font-bold mb-2 flex items-center gap-2")}>
+        <h1 className={cn("text-4xl font-bold mb-2 flex items-center justify-center gap-2")}>
           <Ticket className={cn("w-10 h-10")} />
           Booking History
         </h1>
-        <p className={cn("text-muted-foreground")}>
+        <p className={cn("text-muted-foreground text-center")}>
           View and manage all your movie bookings
         </p>
       </div>
