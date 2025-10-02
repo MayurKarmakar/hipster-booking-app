@@ -17,7 +17,7 @@ export default defineConfig({
         './BookingList': './src/pages/booking-list.tsx',
       },
       remotes: {
-        storeApp: "http://localhost:3004/assets/remoteEntry.js",
+        storeApp: "https://hipster-store-app.netlify.app/assets/remoteEntry.js",
       },
       shared: ["react", "react-dom", "react-router-dom", "react-hook-form", "zod", "@hookform/resolvers", "lucide-react", "class-variance-authority", "clsx", "tailwindcss"],
     }),
